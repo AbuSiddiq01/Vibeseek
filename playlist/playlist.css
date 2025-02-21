@@ -1,0 +1,57 @@
+/* Additional styling for the playlist list and selected playlist */
+#playlist-container {
+    display: flex;
+    justify-content: space-between; /* Space between the items */
+    align-items: flex-start; /* Aligns the items at the top */
+    width: 80%;
+    margin: 20px auto;
+    gap: 20px;
+}
+
+#playlist-container .playlist-box {
+    flex: 1;
+}
+
+#playlist-container .music-player {
+    flex: 1;
+}
+
+.playlist-list {
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+    transition: 0.3s;
+    animation: fadeInUp 1s ease-in-out;
+}
+
+.playlist-list ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.playlist-list li {
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.5);
+    margin-bottom: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.playlist-list li:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+button {
+    padding: 10px 20px;
+    background: #800080;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #a020f0;
+}

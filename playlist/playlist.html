@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Playlist</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .playlist {
+            display: flex;
+            gap: 10px;
+        }
+        select, input {
+            padding: 5px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        .songs-list {
+            margin-top: 20px;
+        }
+        #audio-player {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="playlist">
+            <!-- Create Playlist -->
+            <input type="text" id="playlist-name" placeholder="Enter Playlist Name">
+            <button onclick="createPlaylist()">Create New Playlist</button>
+        </div>
+
+        <div class="playlist">
+            <!-- Select Playlist -->
+            <select id="playlist-select">
+                <option value="">Select a Playlist</option>
+            </select>
+        </div>
+
+        <div class="songs-list">
+            <h3>Available Songs</h3>
+            <ul id="available-songs">
+                <!-- Available songs will be listed here -->
+            </ul>
+        </div>
+
+        <div class="songs-list">
+            <h3>Playlist Songs</h3>
+            <ul id="songs-list">
+                <!-- Songs will be listed here -->
+            </ul>
+        </div>
+
+        <!-- Audio Player -->
+        <div id="audio-player">
+            <audio controls id="audio-player-controls">
+                <source id="audio-source" src="" type="audio/mp3">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+    </div>
+
+    <script>
+        let playlists = JSON.parse(localStorage.getItem('playlists')) || {};
+        let availableSongs = [
+            { name: "Song 1", url: "song1.mp3" },
+            { name: "Song 2", url: "song2.mp3" },
+            { name: "Song 3", url: "song3.mp3" },
+            { name: "Song 4", url: "song4.mp3" }
+        ];
+
+        // Function to create a new playlist
+        function createPlaylist() {
+            const playlistName = document.getElementById('playlist-name').value.trim();
+            if (playlistName && !playlists[playlistName]) {
+                playlists[playlistName] = [];
+                localStorage.setItem('playlists', JSON.stringify(playlists));
+                updatePlaylistSelect();
+            } else if (!playlistName) {
+                alert('Please enter a playlist name');
+            } else {
+                alert('Playlist already exists');
+            }
+        }
+
+        // Function to update the playlist select dropdown
+        function updatePlaylistSelect() {
+            const playlistSelect = document.getElementById('playlist-select');
+            playlistSelect.innerHTML = '<option value="">Select a Playlist</option>'; // Reset options
+
+            for (let playlistName in playlists) {
+                const option = document.createElement('option');
+                option.value = playlistName;
+                option.textContent = playlistName;
+                playlistSelect.appendChild(option);
+            }
+        }
+
+        // Function to add a song to the selected playlist
+        function addSongToPlaylist(song) {
+            const playlistSelect = document.getElementById('playlist-select');
+            const playlistName = playlistSelect.value;
+
+            if (playlistName) {
+                playlists[playlistName].push(song);
+                localStorage.setItem('playlists', JSON.stringify(playlists));
+                updateSongsList(playlistName);
+            } else {
+                alert('Please select a playlist');
+            }
+        }
+
+        // Function to update the song list for the selected playlist
+        function updateSongsList(playlistName) {
+            const songsList = document.getElementById('songs-list');
+            songsList.innerHTML = ''; // Reset the list
+
+            if (playlists[playlistName]) {
+                playlists[playlistName].forEach((song, index) => {
+                    const li = document.createElement('li');
+                    li.textContent = song.name;
+
+                    // Add a play button for each song
+                    const playButton = document.createElement('button');
+                    playButton.textContent = 'Play';
+                    playButton.onclick = () => playSong(song.url);
+
+                    li.appendChild(playButton);
+                    songsList.appendChild(li);
+                });
+            }
+        }
+
+        // Function to play the selected song
+        function playSong(url) {
+            const audioPlayer = document.getElementById('audio-player-controls');
+            const audioSource = document.getElementById('audio-source');
+            audioSource.src = url; // Set the source to the song URL
+            audioPlayer.load(); // Load the new song
+            audioPlayer.play(); // Play the song
+        }
+
+        // Function to display available songs
+        function displayAvailableSongs() {
+            const availableSongsList = document.getElementById('available-songs');
+            availableSongs.forEach(song => {
+                const li = document.createElement('li');
+                li.textContent = song.name;
+
+                // Add an Add button to add song to playlist
+                const addButton = document.createElement('button');
+                addButton.textContent = 'Add to Playlist';
+                addButton.onclick = () => addSongToPlaylist(song);
+
+                li.appendChild(addButton);
+                availableSongsList.appendChild(li);
+            });
+        }
+
+        // Event listener for playlist select dropdown change
+        document.getElementById('playlist-select').addEventListener('change', function() {
+            const selectedPlaylist = this.value;
+            if (selectedPlaylist) {
+                updateSongsList(selectedPlaylist);
+            } else {
+                document.getElementById('songs-list').innerHTML = '';
+            }
+        });
+
+        // Initial call to update the playlist select dropdown and display available songs
+        updatePlaylistSelect();
+        displayAvailableSongs();
+    </script>
+
+</body>
+</html>
