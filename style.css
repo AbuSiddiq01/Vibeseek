@@ -381,4 +381,10 @@ button:hover {
     .player {
         margin-top: 80px; /* Ensures enough space below the playlist */
     }
+
+    .your-element {
+    backdrop-filter: blur(10px);  /* Modern browsers */
+    -webkit-backdrop-filter: blur(10px);  /* Safari 9+ */
+}
+
 }
