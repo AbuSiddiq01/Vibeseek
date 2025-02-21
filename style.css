@@ -1,0 +1,384 @@
+/* 🔥 Global Dark Theme */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #2c3e50, #8e44ad);
+    color: white;
+    margin: 0;
+    padding: 0;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: auto;
+}
+
+/* 🎶 Header with Cool Gradient */
+header {
+    font-size: 28px;
+    padding: 20px;
+    background: linear-gradient(135deg, #800080, #a020f0);
+    color: white;
+    text-align: center;
+    width: 100%;
+    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
+    letter-spacing: 1px;
+    font-weight: bold;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+/* ✨ Glowing Effect for VibeSeek Title */
+#vibeseek-title {
+    font-size: 36px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-align: center;
+    color: white;
+    text-shadow: 0 0 8px rgba(160, 32, 240, 0.8), 
+                 0 0 12px rgba(255, 105, 180, 0.8), 
+                 0 0 16px rgba(255, 69, 0, 0.8);
+    animation: glowEffect 1.5s infinite alternate;
+}
+
+@keyframes glowEffect {
+    0% {
+        text-shadow: 0 0 8px rgba(160, 32, 240, 0.8), 
+                     0 0 12px rgba(255, 105, 180, 0.8), 
+                     0 0 16px rgba(255, 69, 0, 0.8);
+    }
+    100% {
+        text-shadow: 0 0 12px rgba(160, 32, 240, 1), 
+                     0 0 16px rgba(255, 105, 180, 1), 
+                     0 0 20px rgba(255, 69, 0, 1);
+    }
+}
+
+
+
+/* Sidebar Styles */
+#sidebar {
+    position: fixed;
+    left: -250px;  /* Initially hidden */
+    top: 0;
+    width: 250px;
+    height: 100%;
+    background: #222;
+    color: white;
+    padding-top: 60px;
+    transition: 0.3s;
+    z-index: 1000; /* Ensures it's above other elements */
+}
+
+#sidebar.active {
+    left: 0;  /* Slide in */
+}
+
+#sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+#sidebar ul li {
+    padding: 15px;
+    border-bottom: 1px solid #444;
+}
+
+#sidebar ul li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+}
+
+.menu-icon {
+    font-size: 30px;
+    cursor: pointer;
+    position: fixed;
+    left: 10px;
+    top: 10px;
+    background: #333;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 1100; /* Ensures menu icon is always clickable */
+}
+
+/* Overlay Effect */
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    z-index: 999; /* Keeps it behind sidebar but above content */
+}
+
+
+
+/* 🔍 Search Box with Glow */
+.search-box {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin: 25px auto;
+    animation: slideIn 1s ease-in-out;
+}
+
+#search {
+    flex: 1;
+    padding: 12px;
+    font-size: 18px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    transition: 0.3s;
+    box-shadow: 0 0 10px rgba(128, 0, 128, 0.5);
+}
+
+#search:focus {
+    box-shadow: 0 0 15px rgba(160, 32, 240, 0.8);
+}
+
+/* 🎵 Stylish Buttons */
+button {
+    padding: 12px 18px;
+    background: linear-gradient(135deg, #800080, #a020f0);
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-weight: bold;
+    letter-spacing: 1px;
+    box-shadow: 0 0 8px rgba(160, 32, 240, 0.5);
+    animation: glowPulse 1.5s infinite alternate;
+}
+
+button:hover {
+    background: linear-gradient(135deg, #a020f0, #c71585);
+    box-shadow: 0 0 12px rgba(255, 105, 180, 0.8);
+    transform: scale(1.05);
+}
+
+/* 🎶 Song List with Glassmorphism */
+#song-container {
+    width: 80%;
+    min-height: 300px;
+    max-height: 400px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    margin: 20px auto;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+    transition: 0.3s;
+    animation: fadeInUp 1s ease-in-out;
+}
+
+/* 🎵 Song Item Animations */
+.song-item {
+    padding: 12px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: 0.3s;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    display: block;
+    position: relative;
+    overflow: hidden;
+}
+
+.song-item:hover {
+    background: linear-gradient(135deg, #a020f0, #c71585);
+    color: black;
+    border-radius: 10px;
+    box-shadow: 0 0 8px rgba(160, 32, 240, 0.8);
+    transform: translateX(10px);
+}
+
+/* 🔴 Highlighted Song */
+.highlighted {
+    color: #ff4500;
+    font-weight: bold;
+    animation: pulse 1s infinite alternate;
+}
+
+/* 🔥 Highlighted Song Animation */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.1); }
+}
+
+/* 🎚 Custom Scrollbar */
+#song-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+#song-container::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #a020f0, #c71585);
+    border-radius: 10px;
+}
+
+#song-container::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* 🎧 Music Player with Floating Effect */
+.player {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: rgba(24, 24, 24, 0.9);
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px -4px 15px rgba(255, 255, 255, 0.1);
+    animation: float 5s infinite alternate;
+    backdrop-filter: blur(8px);
+}
+
+/* ✨ Floating Animation for Player */
+@keyframes float {
+    0% { transform: translateY(0px); }
+    100% { transform: translateY(-5px); }
+}
+
+/* 🎼 Song Image */
+#song-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 12px;
+    transition: 0.5s;
+}
+
+#song-image:hover {
+    transform: rotate(15deg);
+}
+
+/* 🌟 Additional Animations */
+@keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(-10px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideIn {
+    0% { opacity: 0; transform: translateX(-20px); }
+    100% { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes glowPulse {
+    0% { box-shadow: 0 0 10px rgba(160, 32, 240, 0.5); }
+    100% { box-shadow: 0 0 20px rgba(255, 105, 180, 0.8); }
+}
+
+
+
+  
+
+        /* 🎵 Fix Playlist Layout */
+#playlists-container {
+    position: relative;
+    margin-top: 20px;
+    padding-bottom: 120px; /* Extra space to prevent overlay */
+}
+
+/* 🎯 Playlist Grid - Smooth Horizontal Scroll */
+.playlist-grid {
+    display: flex;
+    overflow-x: auto;
+    gap: 15px;
+    padding: 20px;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    white-space: nowrap;
+}
+
+/* Hide scrollbar for better UI */
+.playlist-grid::-webkit-scrollbar {
+    display: none;
+}
+
+/* 🎇 Playlist Card - Premium Touch Effects */
+.playlist-card {
+    width: 150px;
+    height: 200px;
+    background: linear-gradient(135deg, #ff4e50, #f9d423);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    position: relative;
+    scroll-snap-align: center;
+}
+
+/* 🖼 Playlist Image */
+.playlist-card img {
+    width: 100%;
+    height: 80%;
+    object-fit: cover;
+}
+
+/* 🎶 Playlist Text - Always Visible */
+.playlist-card h3 {
+    text-align: center;
+    font-size: 16px;
+    color: white;
+    font-weight: bold;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 5px;
+    margin: 0;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+/* 🔥 Glowing & Touch Effects */
+.playlist-card:hover,
+.playlist-card:active,
+.playlist-card:focus {
+    transform: scale(1.1);
+    box-shadow: 0 10px 30px rgba(255, 78, 80, 0.8);
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+    animation: glow 0.5s infinite alternate;
+}
+
+/* 🔥 Glowing Effect */
+@keyframes glow {
+    from {
+        box-shadow: 0 0 10px rgba(255, 78, 80, 0.8);
+    }
+    to {
+        box-shadow: 0 0 20px rgba(255, 78, 80, 1);
+    }
+}
+
+/* 📱 Mobile Fixes */
+@media (max-width: 768px) {
+    .playlist-grid {
+        justify-content: flex-start;
+        padding-bottom: 10px;
+    }
+
+    .playlist-card {
+        width: 130px;
+        height: 180px;
+    }
+
+    .player {
+        margin-top: 80px; /* Ensures enough space below the playlist */
+    }
+}

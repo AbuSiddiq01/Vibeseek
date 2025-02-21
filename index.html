@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎵 VibeSeek</title>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <!-- JavaScript -->
+    <script defer type="module" src="script.js"></script>
+</head>
+<body>
+
+    <!-- Sidebar Toggle Button -->
+    <div class="menu-icon" onclick="toggleSidebar()">☰</div>
+
+    <!-- Sidebar -->
+    <div id="sidebar">
+        <ul>
+            <li><a href="#">🏠 Home</a></li>
+            <li><a href="playlist.html">🎶 Playlist</a></li> <!-- Added Link to Playlist -->
+            <li><a href="#">❤️ Favourites</a></li>
+            <li><a href="#">⚙️ Settings</a></li>
+            <li><a href="#">📞 Customer Support</a></li>
+        </ul>
+    </div>
+
+    <!-- Overlay (For smooth sidebar closing) -->
+    <div id="overlay" onclick="toggleSidebar()"></div>
+
+    <!-- Header -->
+    <header>
+        <h1 id ="vibeseek-title">🎶VibeSeek</h1>
+    </header>
+
+    <!-- Search Box -->
+    <div class="search-box">
+        <input type="text" id="search" placeholder="🔍 Search for a song...">
+        <button onclick="searchSongs()">🔍 Search</button>
+    </div>
+
+    <!-- Song List -->
+    <div id="song-container">
+        <h2>🎵 Available Songs</h2>
+        <ul id="song-list">
+            <li class="loading">Loading songs...</li>
+        </ul>
+    </div>
+
+
+<!-- Playlists Section -->
+<div id="playlists-container">
+    <h2>🔥 Explore Playlists</h2>
+    <div class="playlist-grid">
+        <div class="playlist-card" onclick="openPlaylist('Tamil Songs')">
+            <img src="images/tamil.jpg" alt="Tamil Songs">
+            <h3>Tamil Songs</h3>
+        </div>
+        <div class="playlist-card" onclick="openPlaylist('English Songs')">
+            <img src="images/english.jpg" alt="English Songs">
+            <h3>English Songs</h3>
+        </div>
+        <div class="playlist-card" onclick="openPlaylist('Hindi Songs')">
+            <img src="images/hindi.jpg" alt="Hindi Songs">
+            <h3>Hindi Songs</h3>
+        </div>
+    </div>
+</div>
+
+
+    <!-- Music Player -->
+    <div class="player">
+        <img id="song-image" src="default.jpeg" alt="Song Art">
+        <div class="player-controls">
+            <span id="song-title">Select a song</span>
+            <audio id="audio-player" controls></audio>
+        </div>
+    </div>
+
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('overlay');
+            
+            if (sidebar.classList.contains('active')) {
+                sidebar.classList.remove('active');
+                overlay.style.display = "none";
+            } else {
+                sidebar.classList.add('active');
+                overlay.style.display = "block";
+            }
+        }
+    </script>
+
+<script type="module" src="assets/supabaseClient.js"></script>
+
+
+
+
+<script>
+    function openPlaylist(playlistName) {
+        window.location.href = `playlist.html?playlist=${encodeURIComponent(playlistName)}`;
+    }
+</script>
+
+
+</body>
+</html>

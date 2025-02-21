@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playlist</title>
+    <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+    <!-- Back Button -->
+    <button onclick="goBack()">⬅ Back</button>
+    
+    <!-- Playlist Title -->
+    <h1 id="playlist-title"></h1>
+
+    <!-- Search Box -->
+    <div class="search-container">
+        <input type="text" id="search-input" placeholder="Search for a song...">
+        <button id="search-button">🔍</button>
+    </div>
+
+    <!-- Playlist List Box -->
+    <div class="playlist-list-container">
+        <ul id="playlist-list-box"></ul>
+    </div>
+
+    <!-- Audio Player -->
+    <audio id="audio-player" controls></audio>
+
+    <script type="module" src="assets/supabaseClient.js"></script>
+    <script type="module" src="assets/3playlistscript.js"></script>
+
+</body>
+</html>
